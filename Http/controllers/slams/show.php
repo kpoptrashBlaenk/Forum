@@ -29,11 +29,12 @@ where comments.post_id = :post_id',
         'post_id' => $post['id']
     ])->get();
 
-(isset($_GET['comment']))
-    ? $editComment = array_values(array_filter($comments, static function ($element) {
-        return $element['id'] == $_GET['comment'];
-    }))[0]
-    : $editComment = '';
+if (isset($_GET['comment'])) {
+    $filteredComments = array_filter($comments, static fn($element) => $element['id'] == $_GET['comment']);
+    $editComment = array_values($filteredComments)[0] ?? abort(403);
+} else {
+    $editComment = '';
+}
 
 view('slams/show.view.php', [
     'post' => $post,
