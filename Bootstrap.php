@@ -8,7 +8,7 @@ $container = new Container();
 
 $container->bind(Database::class, function () {
     $config = require basePath('config.php');
-    return new Database($config['Database']);
+    return new Database($config['Database'], $config['username'], $config['password']);
 });
 
 $db = $container->resolve(Database::class);
