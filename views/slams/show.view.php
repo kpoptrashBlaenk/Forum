@@ -28,8 +28,8 @@ require basePath('views/partials/header.php');
 
         <div class="row">
             <div class="col-md-8">
-                <h1 class="display-5 fw-bold"><?= htmlspecialchars($post['title']) ?></h1>
-                <p class="fs-4"><?= htmlspecialchars($post['content']) ?></p>
+                <h1 class="display-5 fw-bold"><?= nl2br(htmlspecialchars($post['title'])) ?></h1>
+                <p class="fs-4"><?= nl2br(htmlspecialchars($post['content'])) ?></p>
             </div>
         </div>
         <?php if ($post['user_has_liked'] > 0) : ?>
