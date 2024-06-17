@@ -29,8 +29,15 @@ where comments.post_id = :post_id',
         'post_id' => $post['id']
     ])->get();
 
+(isset($_GET['comment']))
+    ? $editComment = array_values(array_filter($comments, static function ($element) {
+        return $element['id'] == $_GET['comment'];
+    }))[0]
+    : $editComment = '';
+
 view('slams/show.view.php', [
     'post' => $post,
     'comments' => $comments,
+    'editComment' => $editComment,
     'errors' => Session::get('errors')
 ]);

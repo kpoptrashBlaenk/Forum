@@ -1,9 +1,14 @@
+<script>
 //save scrolling
 window.onbeforeunload = function() {
     let currentPath = getCurrentPath();
     let storedPath = localStorage.getItem('storedPath');
     if (storedPath === currentPath) {
-        localStorage.setItem('scrollPosition', window.scrollY.toString());
+        if(<?= isset($_GET['comment']) ?>) {
+            localStorage.setItem('scrollPosition', (document.getElementById('commentArea').offsetTop - 100).toString());
+        } else {
+            localStorage.setItem('scrollPosition', window.scrollY.toString());
+        }
     }
 };
 
@@ -38,3 +43,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
+
+</script>

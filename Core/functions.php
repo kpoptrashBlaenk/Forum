@@ -60,22 +60,30 @@ function uriPathCheck($value): bool
 
 function pageURL($key): string
 {
-
-    $parsedURL = parse_url($_SERVER['REQUEST_URI']);
-
-    parse_str($parsedURL['query'] ?? '', $queryParams);
-
-    $page = $key ?? 1;
-
-    unset($queryParams['page']);
-    $query = http_build_query($queryParams);
-
-    return "{$parsedURL['path']}?{$query}&page={$page}";
+    return removeDuplicateURL('page', $key ?? 1);
 }
 
 function currentURL(): string
 {
     return $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+}
+
+function removeDuplicateURL($key, $value): string
+{
+    $parsedURL = parse_url($_SERVER['REQUEST_URI']);
+    parse_str($parsedURL['query'] ?? '', $queryParams);
+    unset($queryParams[$key]);
+    $query = http_build_query($queryParams);
+    return "{$parsedURL['path']}?{$query}&{$key}={$value}";
+}
+
+function removeParamURL($key): string
+{
+    $parsedURL = parse_url($_SERVER['REQUEST_URI']);
+    parse_str($parsedURL['query'] ?? '', $queryParams);
+    unset($queryParams[$key]);
+    $query = http_build_query($queryParams);
+    return "{$parsedURL['path']}?{$query}";
 }
 
 function old($key, $default = '')

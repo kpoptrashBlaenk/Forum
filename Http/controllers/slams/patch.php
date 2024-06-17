@@ -18,7 +18,7 @@ $post = $db->query('select * from posts where id = :id', ['id' => $_POST['post_i
 
 authorize($post['user_id'] === $currentUserId);
 
-$db->query('UPDATE posts SET title = :title, category_id = :category_id, content = :content WHERE id = :id', [
+$db->query('update posts SET title = :title, category_id = :category_id, content = :content WHERE id = :id', [
     'id' => $_POST['post_id'],
     'title' => $_POST['title'],
     'category_id' => $_POST['category'],
