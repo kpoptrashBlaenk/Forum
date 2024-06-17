@@ -17,7 +17,7 @@ require basePath('views/partials/header.php');
                     class="form-control <?= (isset($errors['email']) || isset($errors['email_password'])) ? 'is-invalid' : '' ?>"
                     id="email"
                     placeholder="name@example.com"
-                    value="<?= old('email') ?>">
+                    value="<?= htmlspecialchars(old('email')) ?>">
                 <label for="email">Email address</label>
             </div>
             <div class="form-floating mb-3">
@@ -27,12 +27,10 @@ require basePath('views/partials/header.php');
                     class="form-control <?= (isset($errors['password']) || isset($errors['email_password'])) ? 'is-invalid' : '' ?>"
                     id="password"
                     placeholder="Password"
-                    value="<?= old('password') ?>">
+                    value="<?= htmlspecialchars(old('password')) ?>">
                 <label for="password">Password</label>
             </div>
-            <?php foreach ($errors as $error) : ?>
-                <p class="text-danger mt-2"><?= $error ?></p>
-            <?php endforeach; ?>
+            <?php require basePath('views/partials/errors.php') ?>
             <div class="checkbox mb-3">
                 <label for="stayConnected">
                     <input

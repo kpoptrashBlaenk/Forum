@@ -67,9 +67,7 @@ require basePath('views/partials/header.php');
                     <label for="comment" class="form-label fw-bold">Write a comment:</label>
                     <textarea class="form-control" id="comment" name="comment" rows="3"></textarea>
                 </div>
-                <?php foreach ($errors as $error) : ?>
-                    <p class="text-danger mt-2"><?= $error ?></p>
-                <?php endforeach; ?>
+                <?php require basePath('views/partials/errors.php') ?>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
@@ -84,8 +82,8 @@ require basePath('views/partials/header.php');
                 <?php foreach ($comments as $comment): ?>
                     <div class="card mb-3">
                         <div class="card-body">
-                            <h5 class="card-title"><?= $comment['username'] ?></h5>
-                            <p class="card-text"><?= $comment['comment'] ?></p>
+                            <h5 class="card-title"><?= htmlspecialchars($comment['username']) ?></h5>
+                            <p class="card-text"><?= htmlspecialchars($comment['comment']) ?></p>
                         </div>
                     </div>
                 <?php endforeach;

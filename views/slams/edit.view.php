@@ -10,11 +10,11 @@ require basePath('views/partials/header.php');
         <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
         <div class="mb-3">
             <label for="title" class="form-label">Title</label>
-            <input type="text" class="form-control" id="title" name="title" value="<?= (strlen(old('title')) === 0) ? $post['title'] : old('title') ?>" required>
+            <input type="text" class="form-control" id="title" name="title" value="<?= htmlspecialchars((strlen(old('title')) === 0) ? $post['title'] : old('title')) ?>" required>
         </div>
         <div class="mb-3">
             <label for="content" class="form-label">Content</label>
-            <textarea class="form-control" id="content" name="content" rows="5"><?= (strlen(old('content')) === 0) ? $post['content'] : old('content') ?></textarea>
+            <textarea class="form-control" id="content" name="content" rows="5"><?= htmlspecialchars((strlen(old('content')) === 0) ? $post['content'] : old('content')) ?></textarea>
         </div>
         <div class="mb-3">
             <label for="category" class="form-label">Tag</label>
@@ -25,9 +25,7 @@ require basePath('views/partials/header.php');
                 <?php endforeach; ?>
             </select>
         </div>
-        <?php foreach ($errors as $error) : ?>
-            <p class="text-danger mt-2"><?= $error ?></p>
-        <?php endforeach; ?>
+        <?php require basePath('views/partials/errors.php') ?>
         <button type="submit" class="btn btn-primary">Post</button>
     </form>
 </div>

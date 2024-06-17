@@ -30,51 +30,12 @@ require basePath('views/partials/header.php');
                     </div>
                 </div>
             </form>
-
-            <?php foreach ($posts as $post): ?>
-                <a href="/slam?id=<?= $post['id'] ?>" class="list-group-item list-group-item-action d-flex gap-3 py-3"
-                   aria-current="true">
-                    <img src="<?= resources($post['image_url']) ?>" alt="<?= $post['name'] ?>" width="32" height="32"
-                         class="rounded-circle flex-shrink-0">
-                    <div class="flex-grow-1">
-                        <h6 class="mb-0"><?= $post['title'] ?></h6>
-                        <p class="mb-0 opacity-75"><?= $post['content'] ?></p>
-                        <div class="d-flex justify-content-start mt-2">
-                            <p class="mb-0 text-danger">Likes: <?= $post['num_likes'] ?></p>
-                            <p class="mb-0 mx-3 text-tertiary">Comments: <?= $post['num_comments'] ?></p>
-                        </div>
-                    </div>
-                    <div class="ms-auto text-end">
-                        <small class="opacity-50 text-nowrap"><?= $post['date'] ?></small>
-                        <small class="d-block mb-0 opacity-75"><?= $post['username'] ?></small>
-                    </div>
-                </a>
-            <?php endforeach; ?>
+            <?php require basePath('views/partials/slams/index.view.php'); ?>
         </div>
     </div>
 </div>
 
-<nav aria-label="Standard pagination example" class="d-flex justify-content-center">
-    <ul class="pagination">
-        <li class="page-item">
-            <a class="page-link" href="<?= pageURL($pages['back']) ?>" aria-label="Previous">
-                <span aria-hidden="true" class="text-dark fs-5">«</span>
-            </a>
-        </li>
-        <?php for ($i = 0; $i < min($pages['last'],3); $i++) : ?>
-        <li class="page-item"><a class="page-link text-dark fs-5" href="<?= pageURL($i+1) ?>"><?= $i+1 ?></a></li>
-        <?php endfor; ?>
-        <?php if ($pages['last'] > 3) : ?>
-        <li class="page-item"><a class="page-link text-dark fs-5">...</a></li>
-        <li class="page-item"><a class="page-link text-dark fs-5" href="<?= pageURL($pages['last']) ?>"><?= $pages['last'] ?></a></li>
-        <?php endif; ?>
-        <li class="page-item">
-            <a class="page-link" href="<?= pageURL($pages['next']) ?>" aria-label="Next">
-                <span aria-hidden="true" class="text-dark fs-5">»</span>
-            </a>
-        </li>
-    </ul>
-</nav>
+<?php require basePath('views/partials/slams/pageNav.view.php') ?>
 
 <?php
 require basePath('views/partials/footer.php');
