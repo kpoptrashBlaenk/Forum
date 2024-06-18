@@ -21,6 +21,7 @@ $router->delete('/slam', 'slams/destroy.php')->only('auth');
 $router->get('/slam/edit', 'slams/edit.php')->only('auth');
 $router->post('/slam/comment', 'slams/comment/store.php')->only('auth');
 $router->patch('/slam/comment', 'slams/comment/patch.php')->only('auth');
+$router->delete('/slam/comment', 'slams/comment/destroy.php')->only('auth');
 $router->post('/slam/like', 'slams/like/store.php')->only('auth');
 $router->delete('/slam/like', 'slams/like/destroy.php')->only('auth');
 
