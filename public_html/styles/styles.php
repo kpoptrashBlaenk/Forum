@@ -1,4 +1,5 @@
 <script>
+    
 //save scrolling
 window.onbeforeunload = function() {
     let currentPath = getCurrentPath();

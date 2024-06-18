@@ -25,6 +25,6 @@ $db->query('update posts SET title = :title, category_id = :category_id, content
     'content' => $_POST['content']
 ]);
 
-redirect("/slams?id={$_POST['post_id']}");
+redirect("/slam?id={$_POST['post_id']}");
 
 exit();

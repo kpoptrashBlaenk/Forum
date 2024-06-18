@@ -51,4 +51,9 @@ class Database
         return $result;
     }
 
+    public function lastInsertedId(): bool|string
+    {
+        return $this->connection->lastInsertId();
+    }
+
 }

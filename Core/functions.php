@@ -63,9 +63,15 @@ function pageURL($key): string
     return removeDuplicateURL('page', $key ?? 1);
 }
 
-function currentURL(): string
+function currentURL($without = null): string
 {
-    return $_SERVER['HTTP_HOST'] . $_SERVER['REQUEST_URI'];
+    $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
+
+    $host = $_SERVER['HTTP_HOST'];
+
+    (isset($without) ? $path = removeParamURI($without) : $path = $_SERVER['REQUEST_URI']);
+
+    return $protocol . "://" . $host . $path;
 }
 
 function removeDuplicateURL($key, $value): string

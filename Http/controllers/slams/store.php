@@ -20,6 +20,6 @@ $db->query('INSERT INTO posts(user_id, title, category_id, content, date) VALUES
     'date' => date('Y-m-d H:i:s')
 ]);
 
-redirect('/slams');
+redirect("/slam?id={$db->lastInsertedId()}");
 
 exit();

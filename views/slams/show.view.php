@@ -1,4 +1,11 @@
 <?php
+
+dd(currentURL('comment') . ' & ' . removeParamURI('comment',$_SERVER['HTTP_REFERER']));
+
+if(currentURL('comment') === removeParamURI('comment',$_SERVER['HTTP_REFERER'])) {
+    echo '<script>window.history.back();</script>';
+}
+
 require basePath('views/partials/head.php');
 require basePath('views/partials/header.php');
 ?>
