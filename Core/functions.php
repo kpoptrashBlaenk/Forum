@@ -69,7 +69,7 @@ function currentURL($without = null): string
 
     $host = $_SERVER['HTTP_HOST'];
 
-    (isset($without) ? $path = removeParamURI($without) : $path = $_SERVER['REQUEST_URI']);
+    (isset($without) ? $path = removeParamURL($without) : $path = $_SERVER['REQUEST_URI']);
 
     return $protocol . "://" . $host . $path;
 }

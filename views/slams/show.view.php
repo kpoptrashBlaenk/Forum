@@ -1,8 +1,8 @@
 <?php
 
-dd(currentURL('comment') . ' & ' . removeParamURI('comment',$_SERVER['HTTP_REFERER']));
+dd(currentURL('comment') . ' & ' . removeParamURL('comment',$_SERVER['HTTP_REFERER']));
 
-if(currentURL('comment') === removeParamURI('comment',$_SERVER['HTTP_REFERER'])) {
+if(currentURL('comment') === removeParamURL('comment',$_SERVER['HTTP_REFERER'])) {
     echo '<script>window.history.back();</script>';
 }
 
