@@ -86,6 +86,21 @@ function removeParamURL($key): string
     return "{$parsedURL['path']}?{$query}";
 }
 
+function code($value): string
+{
+    $value = preg_replace('/\*\*([^*]+)\*\*/', '<span class="fw-bold">$1</span>', $value);
+    $value = preg_replace('/\*([^*]+)\*/', '<span class="fst-italic">$1</span>', $value);
+    $value = preg_replace('/~~([^~]+)~~/', '<span class="text-decoration-line-through">$1</span>', $value);
+    $value = preg_replace('/_([^_]+)_/', '<span class="text-decoration-underline">$1</span>', $value);
+    $value = preg_replace('/`([^`]+)`/', '<span class="bg-secondary-subtle text-dark px-1" style="font-family:Consolas,serif">$1</span>', $value);
+    return $value;
+}
+
+function postFormat($value): string
+{
+    return nl2br(code(htmlspecialchars($value)));
+}
+
 function old($key, $default = '')
 {
     return Session::get('old')[$key] ?? $default;

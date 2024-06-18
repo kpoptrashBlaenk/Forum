@@ -6,7 +6,7 @@
              class="rounded-circle flex-shrink-0">
         <div class="flex-grow-1 container">
             <h6 class="mb-0 overflow-break ellipsis-1"><?= htmlspecialchars($post['title']) ?></h6>
-            <p class="mb-0 opacity-75 overflow-break ellipsis-3"><?= nl2br(htmlspecialchars($post['content'])) ?></p>
+            <p class="mb-0 opacity-75 overflow-break ellipsis-3"><?= postFormat($post['content']) ?></p>
             <div class="d-flex justify-content-start mt-2">
                 <p class="mb-0 text-danger">Likes: <?= $post['num_likes'] ?></p>
                 <p class="mb-0 mx-3 text-tertiary">Comments: <?= $post['num_comments'] ?></p>

@@ -36,3 +36,7 @@ footer {
 .flex-grow-1 {
     min-width: 0
 }
+
+.code-inline{
+    color: green;
+}

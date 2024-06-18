@@ -19,17 +19,19 @@ require basePath('views/partials/header.php');
 
     <div class="container-fluid">
         <div class="row mb-3">
-            <a class="fw-bold mb-0 text-secondary link-underline link-underline-opacity-0"
-               href="/profile?user=<?= htmlspecialchars($post['username']) ?>&page=1">
-                <?= htmlspecialchars($post['username']) ?>
-            </a>
+            <div>
+                <a class="fw-bold mb-0 text-secondary link-underline link-underline-opacity-0"
+                   href="/profile?user=<?= htmlspecialchars($post['username']) ?>&page=1">
+                    <?= htmlspecialchars($post['username']) ?>
+                </a>
+            </div>
             <p class="fw-bold mb-0 text-secondary"><?= $post['date'] ?></p>
         </div>
 
         <div class="row">
-            <div class="col-md-8">
-                <h1 class="display-5 fw-bold"><?= nl2br(htmlspecialchars($post['title'])) ?></h1>
-                <p class="fs-4"><?= nl2br(htmlspecialchars($post['content'])) ?></p>
+            <div>
+                <h1 class="display-5 fw-bold overflow-break"><?= htmlspecialchars($post['title']) ?></h1>
+                <p class="fs-4 overflow-break"><?= postFormat($post['content']) ?></p>
             </div>
         </div>
         <?php if ($post['user_has_liked'] > 0) : ?>
@@ -69,7 +71,7 @@ require basePath('views/partials/header.php');
                 <div class="mb-3">
                     <label for="comment" class="form-label fw-bold">Write a comment:</label>
                     <textarea class="form-control" id="comment" name="comment"
-                              rows="3"><?= htmlspecialchars($editComment['comment'] ?? '') ?></textarea>
+                              rows="3"><?= nl2br(htmlspecialchars($editComment['comment'] ?? '')) ?></textarea>
                 </div>
                 <?php require basePath('views/partials/errors.php') ?>
                 <button type="submit" class="btn btn-primary">Submit</button>
@@ -108,7 +110,7 @@ require basePath('views/partials/header.php');
                                 </div>
                             <?php endif; ?>
                             <h5 class="card-title"><?= htmlspecialchars($comment['username']) ?></h5>
-                            <p class="card-text"><?= htmlspecialchars($comment['comment']) ?></p>
+                            <p class="card-text"><?= postFormat($comment['comment']) ?></p>
                         </div>
                     </div>
                 <?php endforeach;
