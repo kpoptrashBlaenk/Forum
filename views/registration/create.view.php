@@ -13,9 +13,9 @@ require basePath('views/partials/header.php');
             <form class="p-4 p-md-5 border rounded-3 bg-body-tertiary" action="/register" method="POST">
                 <div class="form-floating mb-3">
                     <input
-                            name="username <?= (isset($errors['username'])) ? 'is-invalid' : '' ?>"
+                            name="username"
                             type="text"
-                            class="form-control"
+                            class="form-control <?= (isset($errors['username'])) ? 'is-invalid' : '' ?>"
                             id="username"
                             placeholder="Username"
                             value="<?= htmlspecialchars(old('username')) ?>">

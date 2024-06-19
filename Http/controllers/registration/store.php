@@ -68,12 +68,11 @@ $user = $db->query("select * from users where email = :email", [
 
 $auth->login($user);
 
-if (isset($_SESSION['redirect_to'])) {
-    $redirect_url = $_SESSION['redirect_to'];
-    unset($_SESSION['redirect_to']);
-    redirect('/' . $redirect_url);
-} else {
-    redirect('/');
+echo '<script>
+    let previousReferrer = localStorage.getItem(\'previousReferrer\');
+    if (previousReferrer) {
+        location.replace(previousReferrer);
+    }
+</script>';
 
-}
-exit;
+exit();

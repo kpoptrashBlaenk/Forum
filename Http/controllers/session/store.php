@@ -31,4 +31,11 @@ $user = App::resolve(Database::class)->query("select * from users where email = 
 
 $auth->login($user);
 
-redirect('/');
+echo '<script>
+    let previousReferrer = localStorage.getItem(\'previousReferrer\');
+    if (previousReferrer) {
+        location.replace(previousReferrer);
+    }
+</script>';
+
+exit();

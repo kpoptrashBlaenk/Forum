@@ -12,6 +12,7 @@
             } else {
                 localStorage.setItem('scrollPosition', window.scrollY.toString());
             }
+        }
     };
 
     window.onload = function () {
@@ -29,6 +30,9 @@
         }
 
         localStorage.setItem('storedPath', currentPath);
+
+        localStorage.setItem('previousReferrer', document.referrer);
+        console.log(localStorage.getItem('previousReferrer'))
     };
 
     function getCurrentPath() {
