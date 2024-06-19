@@ -32,6 +32,16 @@ function authorize($condition, $status = Response::FORBIDDEN): void
     exit();
 }
 
+function redirectPreviousReferrer(): void
+{
+    echo '<script>
+                let previousReferrer = localStorage.getItem(\'previousReferrer\');
+                if (previousReferrer) {
+                    location.replace(previousReferrer);
+                }
+                </script>';
+}
+
 function view($path, $attributes = []): void
 {
     extract($attributes);

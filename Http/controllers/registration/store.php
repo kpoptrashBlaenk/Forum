@@ -68,11 +68,6 @@ $user = $db->query("select * from users where email = :email", [
 
 $auth->login($user);
 
-echo '<script>
-    let previousReferrer = localStorage.getItem(\'previousReferrer\');
-    if (previousReferrer) {
-        location.replace(previousReferrer);
-    }
-</script>';
+redirectPreviousReferrer();
 
 exit();
