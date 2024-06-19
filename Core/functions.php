@@ -60,7 +60,7 @@ function uriPathCheck($value): bool
 
 function pageURL($key): string
 {
-    return removeDuplicateURL('page', $key ?? 1);
+    return removeDuplicateURI('page', $key ?? 1);
 }
 
 function currentURL($without = null): string
@@ -74,7 +74,7 @@ function currentURL($without = null): string
     return $protocol . "://" . $host . $path;
 }
 
-function removeDuplicateURL($key, $value): string
+function removeDuplicateURI($key, $value): string
 {
     $parsedURL = parse_url($_SERVER['REQUEST_URI']);
     parse_str($parsedURL['query'] ?? '', $queryParams);
@@ -83,9 +83,11 @@ function removeDuplicateURL($key, $value): string
     return "{$parsedURL['path']}?{$query}&{$key}={$value}";
 }
 
-function removeParamURL($key): string
+function removeParamURI($key, $url = null): string
 {
-    $parsedURL = parse_url($_SERVER['REQUEST_URI']);
+    (!isset($url) ? $url = $_SERVER['REQUEST_URI'] : '');
+
+    $parsedURL = parse_url($url);
     parse_str($parsedURL['query'] ?? '', $queryParams);
     unset($queryParams[$key]);
     $query = http_build_query($queryParams);

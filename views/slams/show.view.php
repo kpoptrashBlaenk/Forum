@@ -1,11 +1,4 @@
 <?php
-
-dd(currentURL('comment') . ' & ' . removeParamURL('comment',$_SERVER['HTTP_REFERER']));
-
-if(currentURL('comment') === removeParamURL('comment',$_SERVER['HTTP_REFERER'])) {
-    echo '<script>window.history.back();</script>';
-}
-
 require basePath('views/partials/head.php');
 require basePath('views/partials/header.php');
 ?>
@@ -41,20 +34,16 @@ require basePath('views/partials/header.php');
                 <p class="fs-4 overflow-break"><?= postFormat($post['content']) ?></p>
             </div>
         </div>
-        <?php if ($post['user_has_liked'] > 0) : ?>
-        <form action="/slam/like" method="POST">
-            <input type="hidden" name="_method" value="DELETE">
-            <?php else : ?>
-            <form action="/slam/like" method="POST">
-                <?php endif; ?>
+
+        <form id="likePostForm">
                 <input type="hidden" name="post_id" value="<?= $post['id'] ?>"
                 <div class="row mt-4">
                     <div class="col-md-8">
                         <?php if ($post['user_has_liked'] > 0) : ?>
-                            <button type="submit" class="btn btn-sm rounded-pill btn-secondary me-2">
+                            <button type="submit" class="btn btn-sm rounded-pill btn-secondary me-2" id="likePostButton">
                                 Unlike: <?= $post['num_likes'] ?></button>
                         <?php else : ?>
-                            <button type="submit" class="btn btn-sm btn-danger rounded-pill me-2 border border-dark">
+                            <button type="submit" class="btn btn-sm btn-danger rounded-pill me-2 border border-dark" id="likePostButton">
                                 Like: <?= $post['num_likes'] ?></button>
                         <?php endif; ?>
                         <span class="badge border border-dark text-dark fs-6">
@@ -86,7 +75,7 @@ require basePath('views/partials/header.php');
                     <input type="hidden" name="_method" value="PATCH">
                     <input type="hidden" name="comment_id" value="<?= $editComment['id'] ?>">
                     <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
-                    <button type="button" class="btn btn-danger"><a href="<?= removeParamURL('comment') ?>"> Cancel </a>
+                    <button type="button" class="btn btn-danger"><a href="<?= removeParamURI('comment') ?>"> Cancel </a>
                     </button>
                 <?php endif; ?>
             </form>
@@ -107,7 +96,7 @@ require basePath('views/partials/header.php');
                                     <form action="slam/comment" method="POST">
                                         <button type="button" class="btn btn-sm btn-primary me-2">
                                             <a class="nav-link"
-                                               href="<?= removeDuplicateURL('comment', $comment['id']) ?>">Edit</a>
+                                               href="<?= removeDuplicateURI('comment', $comment['id']) ?>">Edit</a>
                                         </button>
                                         <input type="hidden" name="comment_id" value="<?= $comment['id'] ?>">
                                         <input type="hidden" name="post_id" value="<?= $post['id'] ?>">
